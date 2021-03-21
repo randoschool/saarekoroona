@@ -10,7 +10,7 @@
     <h1>Saaremaa testid</h1>
     <div>Tehtud teste: {{ $data->where('ResultValue', 'N')->last()['DailyTests'] + $data->where('ResultValue', 'P')->last()['DailyTests'] }}</div>
     <div>Positiivseid teste: {{ $data->last()['DailyCases'] }}</div>
-    <div>Viimase tulemuse kuupäaev: {{ $data->last()['StatisticsDate'] }}</div>
+    <div>Viimase tulemuse kuupäaev: {{ $data->last()['StatisticsDate']->format('d.m.Y') }}</div>
     <canvas id="myChart" height="30vh" width="80vw"></canvas>
     <script>
         const data = @json($data->toArray());
