@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Saaremaa testid</h1>
-    <div>Tehtud teste: {{ $data->where('ResultValue', 'N')->last()['DailyTests'] }}</div>
+    <div>Tehtud teste: {{ $data->where('ResultValue', 'N')->last()['DailyTests'] + $data->where('ResultValue', 'P')->last()['DailyTests'] }}</div>
     <div>Positiivseid teste: {{ $data->last()['DailyCases'] }}</div>
     <div>Viimase tulemuse kuupäaev: {{ $data->last()['StatisticsDate'] }}</div>
     <canvas id="myChart" height="30vh" width="80vw"></canvas>
@@ -26,17 +26,21 @@
             backgroundColor: 'red'
         },
         {
-            label: 'Tehtud testide arv',
+            label: 'Negatiivsete testide arv',
             data: data.filter(item => item.ResultValue === 'N').map(item => item.DailyTests),
             backgroundColor: 'lightgreen'
         }],
     },
     options: {
         scales: {
+            xAxes: [{
+                stacked: true
+            }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true
-                }
+                },
+                stacked: true
             }]
         }
     }
