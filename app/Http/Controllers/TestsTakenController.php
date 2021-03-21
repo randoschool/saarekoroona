@@ -29,15 +29,7 @@ class TestsTakenController extends Controller
                             ];
                         })
                         ->filter(function($item){
-                            return $item['StatisticsDate']->greaterThan(Carbon::now()->subMonths(3));
-                        })
-                        ->map(function($item){
-                            return [
-                                'StatisticsDate' => $item['StatisticsDate']->format('d. M Y'),
-                                'ResultValue' => $item['ResultValue'],
-                                'DailyCases' => $item['DailyCases'],
-                                'DailyTests' => $item['DailyTests']
-                            ];
+                            return $item['StatisticsDate']->greaterThan(Carbon::now()->subMonths(8));
                         })
                         ->values()
                         ;
